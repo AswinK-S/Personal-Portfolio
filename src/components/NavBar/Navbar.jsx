@@ -1,9 +1,19 @@
 import './Navbar.css'
 import logo from '../../../public/assets/images/logo1.png'
+import { useState } from 'react'
+import MobileNav from '../mobileNav/MobileNav'
 
 const Navbar = () => {
+
+    const [openMenu,setOpenMenu]=useState(false)
+    const toggleMenu =()=>{
+        setOpenMenu(!openMenu)
+    }
+
   return (
     <>
+    <MobileNav isOpen={openMenu} toggleMenu={toggleMenu}/>
+
     <nav className='nav-wrapper'>
         <div className='nav-content'>
             <img className='logo' src={logo} alt="" />
@@ -25,9 +35,9 @@ const Navbar = () => {
                 <button className='contact-btn' onClick={()=>{}}>Hire Me</button>
             </ul>
 
-            <button class='menu-btn' onClick={()=>{}}>
-                <span class={'material-symbols-outlined'} style={{fontSize:'1.8rem'}}>
-                    
+            <button className='menu-btn' onClick={toggleMenu}>
+                <span className={'material-symbols-outlined'} style={{fontSize:'1.8rem'}}>
+                    {openMenu? 'close':'menu'}
                 </span>
             </button>
         </div>
